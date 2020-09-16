@@ -54,14 +54,18 @@ class MyStackWithList<T>{
             tail = node;
         }
     }
-    public DoubleNode pop(){
+    public T pop(){
         if(tail==null){
             return null;
         }
-        DoubleNode node = tail;
+        DoubleNode<T> node = tail;
         tail=tail.pre;
-        tail.next=null;
-        return node;
+        if(tail==null){
+            head=null;
+        }else {
+            tail.next=null;
+        }
+        return node.getData();
     }
     public T peek(){
         if(tail==null){
@@ -75,6 +79,7 @@ class MyStackWithList<T>{
 class MyQueueWithList<T>{
     private DoubleNode<T> head;
     private DoubleNode<T> tail;
+    private int size=0;
     public void put(T value){
         DoubleNode<T> node = new DoubleNode<>(value);
         if(head==null||tail==null){
@@ -85,6 +90,7 @@ class MyQueueWithList<T>{
             node.pre = tail;
             tail = node;
         }
+        size++;
     }
 
     public T poll(){
@@ -93,7 +99,12 @@ class MyQueueWithList<T>{
         }else {
             DoubleNode<T> node = head;
             head = head.next;
-            head.pre = null;
+            if(head!=null){
+                head.pre = null;
+            }else {
+                tail = null;
+            }
+            size--;
             return node.getData();
         }
     }
@@ -104,6 +115,10 @@ class MyQueueWithList<T>{
         }else {
             return head.getData();
         }
+    }
+
+    public int size(){
+        return size;
     }
 }
 
