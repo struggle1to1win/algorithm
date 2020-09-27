@@ -101,5 +101,6 @@ public class Practice_BTreeStackTraverse {
         //preTraverse(node1);
         System.out.println("=================================");
         midTraverse(node1);
+
     }
 }
