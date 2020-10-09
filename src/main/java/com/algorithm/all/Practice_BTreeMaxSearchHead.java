@@ -83,10 +83,10 @@ public class Practice_BTreeMaxSearchHead {
         Node node5 = new Node(5);
         Node node6 = new Node(6);
         Node node7 = new Node(7);
-//        node1.left = node2;
+        node1.left = node2;
         node1.right = node3;
-//        node2.right = node5;
-//        node3.left = node6;
+        node2.right = node5;
+        node3.left = node6;
         node6.left = node4;
         node3.right = node7;
         node7.right = new Node(11);
