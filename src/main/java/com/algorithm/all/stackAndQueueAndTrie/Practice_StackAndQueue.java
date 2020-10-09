@@ -1,6 +1,7 @@
 package com.algorithm.all.stackAndQueueAndTrie;
 
-import com.algorithm.all.linkedList.DoubleNode;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @ClassNamePractice_StackAndQueue
@@ -169,5 +170,17 @@ class MyQueueWithArray<T>{
 
     public int incraseIndex(int index){
         return index==max-1?0:index+1;
+    }
+}
+
+@Getter
+@Setter
+class DoubleNode<T>{
+    private T data;
+    public DoubleNode next;
+    public DoubleNode pre;
+
+    public DoubleNode(T data) {
+        this.data = data;
     }
 }

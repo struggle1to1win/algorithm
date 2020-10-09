@@ -1,4 +1,4 @@
-package com.algorithm.all.BTree;
+package com.algorithm.all.bTree;
 
 /**
  * @ClassNamePractice_BTreeIsFull

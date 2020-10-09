@@ -1,4 +1,4 @@
-package com.algorithm.all.BTree;
+package com.algorithm.all.bTree;
 
 import java.util.LinkedList;
 import java.util.Queue;
