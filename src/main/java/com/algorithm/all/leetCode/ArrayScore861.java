@@ -11,39 +11,36 @@ package com.algorithm.all.leetCode;
  *
  * 返回尽可能高的分数。
  *
+ * 1、要最大，第一位的值必须是1，这时使用 ··行反转··
+ * 2、第二位及以后要取最大，要使同时的情况下1更多，但是这个时候不能··行反转··，只能 ··列反转··。所以只用看当前列有多少个1，超过行数的一半就成，否则取行数减去当前列的1
+ *
  * @Author Yao Xin
  * @Date2020/12/7 17:31
  **/
 public class ArrayScore861 {
     public int matrixScore(int[][] A) {
-        for(int i = 0;i<A.length;i++){
-            if(A[i][0]==0){
-                reversalRow(A,i);
-            }
-        }
-        int result = A.length*(2^(A[0].length));
+
+        int result = A.length*(1<<(A[0].length-1));
+
         for(int i=1;i<A[0].length;i++){
             int sum = 0;
             for(int j=0;j<A.length;j++){
-                sum += A[j][i];
+                if(A[j][0]==1){
+                    sum += A[j][i];
+                }else {
+                    sum += 1 - A[j][i];
+                }
             }
-            if(2*sum<A[0].length){
-                sum = A[0].length - sum;
-            }
-            result += sum*2^(A[0].length-1-i);
+            sum = Math.max(sum,A.length-sum);
+            result += sum*(1<<(A[0].length-1-i));
         }
         return result;
     }
 
-    public void reversalRow(int[][] A,int a){
-        for(int i = 0;i<A[0].length;i++){
-            A[a][i] = 1 - A[a][i];
-        }
-    }
-
     public static void main(String[] args) {
         ArrayScore861 ss= new ArrayScore861();
-        int[][] A = new int[][]{{0,0,1,1},{1,0,1,0},{1,1,0,0}};
+        int[][] A = new int[][]{{0,1},{0,1},{0,1},{0,0}};
+//        int[][] A = new int[][]{{0}};
         System.out.println(ss.matrixScore(A));
     }
 }
