@@ -11,10 +11,14 @@ AbstractQueuedSynchronizer -> ReentrantLock: tryAcquire(1)
 ReentrantLock -> ReentrantLock: nonfairTryAcquire(1)
 note left
 如果当前没有线程占用锁，占用此锁
-当前有线程占用此锁，判断是否当前线程（重入），都不是return false
+当前有线程占用此锁，判断是否当前线程（重入)
+都不是return false
 end note
 ReentrantLock -> AbstractQueuedSynchronizer:addWaiter(Node mode)
-note left:为当前线程创建一个节点node，适用cas的方式将此node添加到等待队列末尾
+note left
+为当前线程创建一个节点node
+适用cas的方式将此node添加到等待队列末尾
+end note
 ReentrantLock -> AbstractQueuedSynchronizer:selfInterrupt()
 note left: 获取锁、添加至等待队列失败，会将本线程打断
 @enduml
